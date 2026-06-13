@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Aryvo Admin Portal | Precision Operations</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Hanken+Grotesk:wght@600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-container": "#e3e2ff",
+                    "conversion-orange": "#F59E0B",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-fixed": "#07006c",
+                    "on-error": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "primary-fixed": "#dde1ff",
+                    "error": "#ba1a1a",
+                    "outline-variant": "#c3c5d9",
+                    "outline": "#737688",
+                    "surface-gray": "#F8FAFC",
+                    "tertiary": "#3737c5",
+                    "background": "#faf8ff",
+                    "surface-container-highest": "#dae2fd",
+                    "tertiary-fixed": "#e1e0ff",
+                    "surface-dim": "#d2d9f4",
+                    "surface-container-high": "#e2e7ff",
+                    "on-primary-fixed-variant": "#0038b6",
+                    "tertiary-fixed-dim": "#c0c1ff",
+                    "on-background": "#131b2e",
+                    "secondary": "#006688",
+                    "primary-fixed-dim": "#b7c4ff",
+                    "surface": "#faf8ff",
+                    "surface-variant": "#dae2fd",
+                    "on-tertiary-fixed-variant": "#2f2ebe",
+                    "on-secondary-container": "#004b65",
+                    "surface-tint": "#004ced",
+                    "on-error-container": "#93000a",
+                    "success-emerald": "#10B981",
+                    "on-primary": "#ffffff",
+                    "secondary-container": "#00c1fd",
+                    "secondary-fixed-dim": "#75d1ff",
+                    "on-secondary-fixed-variant": "#004d67",
+                    "on-surface-variant": "#434656",
+                    "surface-container": "#eaedff",
+                    "error-container": "#ffdad6",
+                    "on-secondary-fixed": "#001e2b",
+                    "primary": "#003ec7",
+                    "inverse-primary": "#b7c4ff",
+                    "on-primary-fixed": "#001452",
+                    "surface-bright": "#faf8ff",
+                    "on-surface": "#131b2e",
+                    "primary-container": "#0052ff",
+                    "on-primary-container": "#dfe3ff",
+                    "surface-container-low": "#f2f3ff",
+                    "inverse-on-surface": "#eef0ff",
+                    "secondary-fixed": "#c2e8ff",
+                    "inverse-surface": "#283044",
+                    "tertiary-container": "#5153de",
+                    "surface-container-lowest": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "base": "8px",
+                    "section-padding-mobile": "64px",
+                    "gutter": "24px",
+                    "section-padding-desktop": "120px",
+                    "container-max": "1280px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Hanken Grotesk"],
+                    "body-lg": ["Inter"],
+                    "headline-md": ["Hanken Grotesk"],
+                    "label-caps": ["JetBrains Mono"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display-lg": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #F8FAFC;
+            color: #131b2e;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #10B981;
+            border-radius: 50%;
+            position: relative;
+        }
+
+        .pulse-dot::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: #10B981;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(3.5); opacity: 0; }
+        }
+
+        .card-lift {
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .card-lift:hover {
+            transform: translateY(-4px);
+            box-shadow: 0px 10px 30px rgba(15, 23, 42, 0.08);
+        }
+
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body class="flex min-h-screen">
+<!-- SideNavBar Anchor -->
+<aside class="fixed left-0 top-0 h-full flex flex-col py-6 border-r border-outline-variant bg-surface-container-low w-64 z-50">
+<div class="px-6 mb-10">
+<h1 class="font-display-lg text-body-lg font-black text-on-background">Aryvo Admin</h1>
+<p class="font-label-caps text-[10px] text-outline tracking-widest mt-1">SYSTEM OPERATOR</p>
+</div>
+<nav class="flex-1 space-y-1">
+<!-- Dashboard (Active) -->
+<a class="bg-primary-container text-on-primary-container rounded-lg mx-2 my-1 flex items-center px-4 py-3 scale-98 transition-all" href="#">
+<span class="material-symbols-outlined mr-3 text-[20px]" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="font-label-caps text-label-caps uppercase">Dashboard</span>
+</a>
+<!-- Leads -->
+<a class="text-on-surface-variant hover:bg-surface-container-highest hover:translate-x-1 transition-all rounded-lg mx-2 my-1 flex items-center px-4 py-3" href="#">
+<span class="material-symbols-outlined mr-3 text-[20px]">leaderboard</span>
+<span class="font-label-caps text-label-caps uppercase">Leads</span>
+</a>
+<!-- Analytics -->
+<a class="text-on-surface-variant hover:bg-surface-container-highest hover:translate-x-1 transition-all rounded-lg mx-2 my-1 flex items-center px-4 py-3" href="#">
+<span class="material-symbols-outlined mr-3 text-[20px]">insights</span>
+<span class="font-label-caps text-label-caps uppercase">Analytics</span>
+</a>
+<!-- Partners -->
+<a class="text-on-surface-variant hover:bg-surface-container-highest hover:translate-x-1 transition-all rounded-lg mx-2 my-1 flex items-center px-4 py-3" href="#">
+<span class="material-symbols-outlined mr-3 text-[20px]">handshake</span>
+<span class="font-label-caps text-label-caps uppercase">Partners</span>
+</a>
+<!-- Settings -->
+<a class="text-on-surface-variant hover:bg-surface-container-highest hover:translate-x-1 transition-all rounded-lg mx-2 my-1 flex items-center px-4 py-3" href="#">
+<span class="material-symbols-outlined mr-3 text-[20px]">settings</span>
+<span class="font-label-caps text-label-caps uppercase">Settings</span>
+</a>
+</nav>
+<div class="mt-auto px-2 space-y-1">
+<button class="w-full bg-primary text-on-primary font-label-caps text-label-caps py-3 rounded-lg mb-4 flex items-center justify-center gap-2 hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-[18px]">file_download</span>
+            EXPORT DATA
+        </button>
+<a class="text-on-surface-variant hover:bg-surface-container-highest rounded-lg flex items-center px-4 py-3 transition-colors" href="#">
+<span class="material-symbols-outlined mr-3 text-[20px]">help_outline</span>
+<span class="font-label-caps text-label-caps">Support</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-container-highest rounded-lg flex items-center px-4 py-3 transition-colors" href="#">
+<span class="material-symbols-outlined mr-3 text-[20px]">logout</span>
+<span class="font-label-caps text-label-caps">Sign Out</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 flex-1 p-8 max-w-container-max mx-auto w-full">
+<!-- Header -->
+<header class="flex justify-between items-center mb-10">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-background">Operational Overview</h2>
+<div class="flex items-center gap-2 mt-1">
+<div class="pulse-dot"></div>
+<span class="font-label-caps text-[11px] text-outline">LIVE SYSTEM STATUS: ACTIVE</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="bg-surface-container-lowest border border-outline-variant p-2 rounded-xl flex items-center gap-3 pr-4">
+<img alt="Admin Avatar" class="w-10 h-10 rounded-lg object-cover" data-alt="Close-up studio portrait of a professional male administrator in his 40s wearing a crisp white shirt. The background is a soft, blurred modern office environment with cool blue and white tones. Professional high-key lighting creates a clean, corporate SaaS aesthetic consistent with the Aryvo brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyCJ-lmfCV4WH_POPSLYWJ0iyQqexxWmyinRAtx4Hbwg_lSm_45juxwbqVM5Z58vR-lwTuoziSoZkIs1R9dCtbZsqR0JShWrn9D9gG3DOBAAUAsrd4B1MYTtO_ql1h1W3hKKn1hoWvbmb5pbOMoxfgO2A8zz3V_fiWy1P1L1ZYsOmofYTDkhA2deq4BshUzUJsZfbslt8MlAv6O3jZMs6cjs5TIYZO96NeSDCLvFXQebxVE354DzGH3jvPs85TbJDDgUYf0Se4z24"/>
+<div>
+<p class="font-body-md text-[14px] font-semibold leading-none">Admin User</p>
+<p class="font-label-caps text-[10px] text-outline">OPERATOR ID: 772</p>
+</div>
+</div>
+</div>
+</header>
+<!-- Summary Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+<!-- Total Leads -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/30 shadow-sm card-lift">
+<div class="flex justify-between items-start mb-4">
+<div class="p-3 bg-primary-container/10 rounded-lg">
+<span class="material-symbols-outlined text-primary">groups</span>
+</div>
+<span class="font-label-caps text-success-emerald text-[12px] font-bold" id="leads-growth">+12% ↑</span>
+</div>
+<p class="font-label-caps text-outline text-[11px] mb-1">TOTAL LEADS</p>
+<h3 class="font-display-lg text-[42px] leading-none text-on-background" id="stat-total-leads">0</h3>
+<div class="w-full bg-surface-container mt-4 h-1 rounded-full overflow-hidden">
+<div class="bg-primary h-full transition-all duration-1000" id="progress-total-leads" style="width: 0%"></div>
+</div>
+</div>
+<!-- Demo Requests -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/30 shadow-sm card-lift">
+<div class="flex justify-between items-start mb-4">
+<div class="p-3 bg-secondary-container/10 rounded-lg">
+<span class="material-symbols-outlined text-secondary">calendar_today</span>
+</div>
+<span class="font-label-caps text-success-emerald text-[12px] font-bold" id="demo-growth">+5% ↑</span>
+</div>
+<p class="font-label-caps text-outline text-[11px] mb-1">DEMO REQUESTS</p>
+<h3 class="font-display-lg text-[42px] leading-none text-on-background" id="stat-demo-requests">0</h3>
+<div class="w-full bg-surface-container mt-4 h-1 rounded-full overflow-hidden">
+<div class="bg-secondary h-full transition-all duration-1000" id="progress-demo-requests" style="width: 0%"></div>
+</div>
+</div>
+<!-- New Inquiries -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/30 shadow-sm card-lift">
+<div class="flex justify-between items-start mb-4">
+<div class="p-3 bg-tertiary-container/10 rounded-lg">
+<span class="material-symbols-outlined text-tertiary">mail</span>
+</div>
+<span class="font-label-caps text-conversion-orange text-[12px] font-bold">NEW</span>
+</div>
+<p class="font-label-caps text-outline text-[11px] mb-1">NEW INQUIRIES</p>
+<h3 class="font-display-lg text-[42px] leading-none text-on-background" id="stat-new-inquiries">0</h3>
+<div class="flex gap-1 mt-4" id="stat-inquiry-dots">
+<div class="h-1 flex-1 bg-tertiary rounded-full opacity-30"></div>
+<div class="h-1 flex-1 bg-tertiary rounded-full opacity-30"></div>
+<div class="h-1 flex-1 bg-tertiary rounded-full opacity-30"></div>
+<div class="h-1 flex-1 bg-tertiary rounded-full opacity-30"></div>
+</div>
+</div>
+</div>
+<!-- Leads Table Section -->
+<section class="bg-surface-container-lowest border border-outline-variant/30 rounded-2xl shadow-md overflow-hidden">
+<div class="p-6 border-b border-outline-variant/20 flex flex-col md:flex-row md:items-center justify-between gap-4">
+<h3 class="font-headline-md text-[20px] text-on-background">Active Lead Queue</h3>
+<div class="flex items-center gap-3">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px]">search</span>
+<input class="pl-10 pr-4 py-2 border border-outline-variant rounded-lg bg-surface-container-low text-body-md focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none w-64 transition-all" id="lead-search" placeholder="Filter leads..." type="text"/>
+</div>
+<button class="p-2 border border-outline-variant rounded-lg hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">filter_list</span>
+</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant/30">
+<th class="px-6 py-4 font-label-caps text-[11px] text-outline uppercase tracking-wider">Business / Name</th>
+<th class="px-6 py-4 font-label-caps text-[11px] text-outline uppercase tracking-wider">Contact Details</th>
+<th class="px-6 py-4 font-label-caps text-[11px] text-outline uppercase tracking-wider">Source</th>
+<th class="px-6 py-4 font-label-caps text-[11px] text-outline uppercase tracking-wider">Timestamp</th>
+<th class="px-6 py-4 font-label-caps text-[11px] text-outline uppercase tracking-wider">Status</th>
+<th class="px-6 py-4 font-label-caps text-[11px] text-outline uppercase tracking-wider text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10" id="leads-table-body">
+<!-- Dynamic Rows Loaded from LocalStorage -->
+</tbody>
+</table>
+</div>
+<div class="px-6 py-4 bg-surface-container-low flex items-center justify-between">
+<span class="text-[13px] text-outline" id="pagination-info">Showing 0 of 0 entries</span>
+<div class="flex gap-2">
+<button class="p-2 border border-outline-variant rounded-lg opacity-50 cursor-not-allowed"><span class="material-symbols-outlined">chevron_left</span></button>
+<button class="px-4 py-2 bg-primary text-on-primary rounded-lg text-sm font-semibold">1</button>
+<button class="p-2 border border-outline-variant rounded-lg opacity-50 cursor-not-allowed"><span class="material-symbols-outlined">chevron_right</span></button>
+</div>
+</div>
+</section>
+<!-- Insights Footer Section -->
+<section class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="bg-surface-container-lowest p-6 rounded-2xl border border-outline-variant/30 shadow-sm">
+<h4 class="font-headline-md text-[18px] mb-4">Lead Source Distribution</h4>
+<div class="h-48 flex items-end justify-between gap-2" id="source-chart">
+<div class="flex-1 bg-primary/20 rounded-t-lg relative group">
+<div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-inverse-surface text-inverse-on-surface text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity" id="chart-val-pricing">0%</div>
+<div class="bg-primary w-full rounded-t-lg transition-all duration-1000" id="chart-bar-pricing" style="height: 0%"></div>
+<p class="font-label-caps text-[9px] text-center mt-2 absolute top-full w-full">Pricing</p>
+</div>
+<div class="flex-1 bg-secondary/20 rounded-t-lg relative group">
+<div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-inverse-surface text-inverse-on-surface text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity" id="chart-val-demo">0%</div>
+<div class="bg-secondary w-full rounded-t-lg transition-all duration-1000" id="chart-bar-demo" style="height: 0%"></div>
+<p class="font-label-caps text-[9px] text-center mt-2 absolute top-full w-full">Demo</p>
+</div>
+<div class="flex-1 bg-tertiary/20 rounded-t-lg relative group">
+<div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-inverse-surface text-inverse-on-surface text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity" id="chart-val-contact">0%</div>
+<div class="bg-tertiary w-full rounded-t-lg transition-all duration-1000" id="chart-bar-contact" style="height: 0%"></div>
+<p class="font-label-caps text-[9px] text-center mt-2 absolute top-full w-full">Contact</p>
+</div>
+</div>
+</div>
+<div class="bg-primary border border-outline-variant/30 rounded-2xl p-6 relative overflow-hidden flex flex-col justify-center shadow-md">
+<div class="absolute -right-10 -top-10 w-48 h-48 bg-white/10 rounded-full blur-3xl"></div>
+<div class="relative z-10">
+<h4 class="font-headline-md text-[24px] text-on-primary mb-2">Weekly Goal Progress</h4>
+<p class="text-primary-fixed font-body-md mb-6" id="goal-text">You're tracking your demo booking target for this week. Keep pushing!</p>
+<div class="flex items-center gap-4">
+<div class="flex-1 h-3 bg-white/20 rounded-full overflow-hidden">
+<div class="h-full bg-conversion-orange transition-all duration-1000 shadow-[0_0_15px_rgba(245,158,11,0.5)]" id="goal-progress-bar" style="width: 0%"></div>
+</div>
+<span class="font-label-caps text-on-primary text-xl font-bold" id="goal-percent">0%</span>
+</div>
+<button class="mt-8 bg-surface-bright text-primary font-label-caps text-label-caps px-6 py-2 rounded-lg hover:scale-95 transition-transform">VIEW TARGETS</button>
+</div>
+</div>
+</section>
+</main>
+<script>
+    /**
+     * Aryvo Admin Data Synchronizer
+     * Fetches leads from localStorage('aryvo_leads') and updates UI
+     */
+    
+    function refreshLeadData() {
+        const rawLeads = localStorage.getItem('aryvo_leads');
+        const leads = rawLeads ? JSON.parse(rawLeads) : [];
+        
+        updateStats(leads);
+        renderTable(leads);
+        updateInsights(leads);
+    }
+
+    function updateStats(leads) {
+        // Mocking some base numbers since storage might be empty for demo
+        const total = leads.length + 1280; // Offsetting for aesthetic
+        const demoRequests = leads.filter(l => l.type === 'demo' || l.source?.includes('DEMO')).length + 40;
+        const newInquiries = leads.filter(l => {
+            const date = new Date(l.timestamp || Date.now());
+            const today = new Date();
+            return date.toDateString() === today.toDateString();
+        }).length + 12;
+
+        document.getElementById('stat-total-leads').textContent = total.toLocaleString();
+        document.getElementById('stat-demo-requests').textContent = demoRequests.toLocaleString();
+        document.getElementById('stat-new-inquiries').textContent = newInquiries.toLocaleString();
+
+        // Animate progress bars
+        document.getElementById('progress-total-leads').style.width = '75%';
+        document.getElementById('progress-demo-requests').style.width = '40%';
+        
+        // Update inquiry dots (visual only)
+        const dotContainer = document.getElementById('stat-inquiry-dots');
+        const dots = dotContainer.children;
+        const activeDots = Math.min(newInquiries % 5, 4);
+        for(let i=0; i<dots.length; i++) {
+            dots[i].classList.toggle('opacity-30', i >= activeDots);
+        }
+    }
+
+    function renderTable(leads) {
+        const tbody = document.getElementById('leads-table-body');
+        const searchTerm = document.getElementById('lead-search').value.toLowerCase();
+        
+        // Merge with dummy data if empty to show functionality
+        const displayLeads = leads.length > 0 ? leads : [
+            { id: 1, business: 'Lumina Logistics', name: 'Marcus Thorne', email: 'm.thorne@lumina.io', phone: '+44 20 7946 0123', type: 'PRICE INQUIRY - 1 YEAR', timestamp: 'Today, 14:22', status: 'Pending', statusColor: 'bg-conversion-orange' },
+            { id: 2, business: 'Skyline Retail Group', name: 'Elena Rodriguez', email: 'elena@skyline.co', phone: '+1 (555) 010-8899', type: 'DEMO BOOKING', timestamp: 'Today, 11:05', status: 'Assigned', statusColor: 'bg-success-emerald' },
+            { id: 3, business: 'Urban Fleet Solutions', name: 'James Miller', email: 'j.miller@urbanfleet.com', phone: '+44 7700 900345', type: 'PRICE INQUIRY - 1 YEAR', timestamp: 'Oct 23, 17:45', status: 'Followed-up', statusColor: 'bg-outline' },
+            { id: 4, business: 'Greenway Distribution', name: 'Sarah Jenkins', email: 'sarah.j@greenway.com', phone: '+1 (555) 998-1244', type: 'DEMO BOOKING', timestamp: 'Oct 23, 15:12', status: 'Pending', statusColor: 'bg-conversion-orange' }
+        ];
+
+        const filteredLeads = displayLeads.filter(l => 
+            (l.business || '').toLowerCase().includes(searchTerm) || 
+            (l.name || '').toLowerCase().includes(searchTerm) ||
+            (l.email || '').toLowerCase().includes(searchTerm)
+        );
+
+        tbody.innerHTML = filteredLeads.map(lead => `
+            <tr class="hover:bg-surface-container transition-colors group cursor-pointer" onclick="console.log('Lead ID: ${lead.id}')">
+                <td class="px-6 py-5">
+                    <div class="flex flex-col">
+                        <span class="font-body-md font-semibold text-on-background">${lead.business || 'Individual'}</span>
+                        <span class="text-[13px] text-outline">${lead.name}</span>
+                    </div>
+                </td>
+                <td class="px-6 py-5">
+                    <div class="flex flex-col">
+                        <span class="text-[14px] text-on-surface-variant">${lead.email}</span>
+                        <span class="text-[13px] text-outline">${lead.phone || 'N/A'}</span>
+                    </div>
+                </td>
+                <td class="px-6 py-5">
+                    <span class="px-3 py-1 ${lead.type?.includes('DEMO') ? 'bg-secondary-container/10 text-secondary border border-secondary/20' : 'bg-primary-container/10 text-primary border border-primary/20'} rounded-full text-[11px] font-bold font-label-caps">
+                        ${(lead.type || lead.source || 'PRICE INQUIRY').toUpperCase()}
+                    </span>
+                </td>
+                <td class="px-6 py-5 font-body-md text-[14px] text-on-surface-variant">
+                    ${typeof lead.timestamp === 'string' ? lead.timestamp : new Date(lead.timestamp).toLocaleString()}
+                </td>
+                <td class="px-6 py-5">
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full ${lead.statusColor || 'bg-conversion-orange'}"></span>
+                        <span class="text-[13px] font-medium text-on-surface-variant">${lead.status || 'Pending'}</span>
+                    </div>
+                </td>
+                <td class="px-6 py-5 text-right">
+                    <button class="text-primary hover:text-on-primary-fixed-variant transition-colors opacity-0 group-hover:opacity-100">
+                        <span class="material-symbols-outlined">chevron_right</span>
+                    </button>
+                </td>
+            </tr>
+        `).join('');
+
+        document.getElementById('pagination-info').textContent = `Showing ${filteredLeads.length} of ${displayLeads.length + (leads.length > 0 ? 1280 : 0)} entries`;
+    }
+
+    function updateInsights(leads) {
+        // Calculation logic for source distribution
+        const total = leads.length || 100;
+        const pricing = leads.filter(l => (l.type || '').includes('PRICE')).length + 65;
+        const demo = leads.filter(l => (l.type || '').includes('DEMO')).length + 25;
+        const contact = 10; // Fixed baseline
+
+        const sum = pricing + demo + contact;
+        const p_per = Math.round((pricing/sum)*100);
+        const d_per = Math.round((demo/sum)*100);
+        const c_per = Math.round((contact/sum)*100);
+
+        document.getElementById('chart-bar-pricing').style.height = p_per + '%';
+        document.getElementById('chart-val-pricing').textContent = p_per + '%';
+        
+        document.getElementById('chart-bar-demo').style.height = d_per + '%';
+        document.getElementById('chart-val-demo').textContent = d_per + '%';
+        
+        document.getElementById('chart-bar-contact').style.height = c_per + '%';
+        document.getElementById('chart-val-contact').textContent = c_per + '%';
+
+        // Weekly Goal Progress (mocked animation)
+        const goalVal = 82;
+        document.getElementById('goal-progress-bar').style.width = goalVal + '%';
+        document.getElementById('goal-percent').textContent = goalVal + '%';
+    }
+
+    // Event Listeners
+    window.addEventListener('storage', (e) => {
+        if (e.key === 'aryvo_leads') {
+            refreshLeadData();
+        }
+    });
+
+    document.getElementById('lead-search').addEventListener('input', () => {
+        const rawLeads = localStorage.getItem('aryvo_leads');
+        const leads = rawLeads ? JSON.parse(rawLeads) : [];
+        renderTable(leads);
+    });
+
+    // Initial Load
+    window.addEventListener('load', () => {
+        refreshLeadData();
+    });
+</script>
+</body></html>
