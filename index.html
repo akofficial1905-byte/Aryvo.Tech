@@ -1,496 +1,762 @@
 <!DOCTYPE html>
-
-<html class="scroll-smooth" lang="en"><head>
+<html lang="en" class="scroll-smooth">
+<head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Aryvo Technology | AI-Powered Business Operations &amp; POS</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800;900&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            "colors": {
-                    "on-tertiary-container": "#e3e2ff",
-                    "conversion-orange": "#F59E0B",
-                    "on-secondary": "#ffffff",
-                    "on-tertiary-fixed": "#07006c",
-                    "on-error": "#ffffff",
-                    "on-tertiary": "#ffffff",
-                    "primary-fixed": "#dde1ff",
-                    "error": "#ba1a1a",
-                    "outline-variant": "#c3c5d9",
-                    "outline": "#737688",
-                    "surface-gray": "#F8FAFC",
-                    "tertiary": "#3737c5",
-                    "background": "#faf8ff",
-                    "surface-container-highest": "#dae2fd",
-                    "tertiary-fixed": "#e1e0ff",
-                    "surface-dim": "#d2d9f4",
-                    "surface-container-high": "#e2e7ff",
-                    "on-primary-fixed-variant": "#0038b6",
-                    "tertiary-fixed-dim": "#c0c1ff",
-                    "on-background": "#131b2e",
-                    "secondary": "#006688",
-                    "primary-fixed-dim": "#b7c4ff",
-                    "surface": "#faf8ff",
-                    "surface-variant": "#dae2fd",
-                    "on-tertiary-fixed-variant": "#2f2ebe",
-                    "on-secondary-container": "#004b65",
-                    "surface-tint": "#004ced",
-                    "on-error-container": "#93000a",
-                    "success-emerald": "#10B981",
-                    "on-primary": "#ffffff",
-                    "secondary-container": "#00c1fd",
-                    "secondary-fixed-dim": "#75d1ff",
-                    "on-secondary-fixed-variant": "#004d67",
-                    "on-surface-variant": "#434656",
-                    "surface-container": "#eaedff",
-                    "error-container": "#ffdad6",
-                    "on-secondary-fixed": "#001e2b",
-                    "primary": "#003ec7",
-                    "inverse-primary": "#b7c4ff",
-                    "on-primary-fixed": "#001452",
-                    "surface-bright": "#faf8ff",
-                    "on-surface": "#131b2e",
-                    "primary-container": "#0052ff",
-                    "on-primary-container": "#dfe3ff",
-                    "surface-container-low": "#f2f3ff",
-                    "inverse-on-surface": "#eef0ff",
-                    "secondary-fixed": "#c2e8ff",
-                    "inverse-surface": "#283044",
-                    "tertiary-container": "#5153de",
-                    "surface-container-lowest": "#ffffff"
-            },
-            "borderRadius": {
-                    "DEFAULT": "0.25rem",
-                    "lg": "0.5rem",
-                    "xl": "0.75rem",
-                    "full": "9999px"
-            },
-            "spacing": {
-                    "base": "8px",
-                    "section-padding-mobile": "64px",
-                    "gutter": "24px",
-                    "section-padding-desktop": "120px",
-                    "container-max": "1280px"
-            },
-            "fontFamily": {
-                    "display-lg-mobile": ["Hanken Grotesk"],
-                    "body-lg": ["Inter"],
-                    "headline-md": ["Hanken Grotesk"],
-                    "label-caps": ["JetBrains Mono"],
-                    "body-md": ["Inter"],
-                    "display-lg": ["Hanken Grotesk"]
-            },
-            "fontSize": {
-                    "display-lg-mobile": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
-                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
-                    "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
-                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
-                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
-                    "display-lg": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
-            }
-          },
-        },
-      }
-    </script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Aryvo Technology | AI-Powered POS & Business Operations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        .btn-glossy {
-            position: relative;
-            overflow: hidden;
-            box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .btn-glossy:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(0, 62, 199, 0.3), inset 0 1px 0 0 rgba(255, 255, 255, 0.4);
-        }
-        .glass-nav {
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-        }
-        .pulse-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #F59E0B;
-            position: relative;
-        }
-        .pulse-dot::after {
-            content: '';
-            position: absolute;
-            inset: -4px;
-            border-radius: 50%;
-            background: #F59E0B;
-            opacity: 0.4;
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 0.4; }
-            100% { transform: scale(2.5); opacity: 0; }
-        }
-        .bento-grid {
-            display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            gap: 24px;
-        }
-        .form-success-overlay {
-            display: none;
-            position: absolute;
-            inset: 0;
-            background: rgba(255, 255, 255, 0.95);
-            z-index: 10;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            border-radius: 2.5rem;
-            text-align: center;
-            padding: 2rem;
-            animation: fadeIn 0.4s ease-out;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
-        }
-    </style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0B0F1A;
+  --ink-2:#3A3F52;
+  --ink-3:#787E94;
+  --bg:#F5F6FA;
+  --surface:#FFFFFF;
+  --surface-2:#EEF0F8;
+  --blue:#1341FF;
+  --blue-dark:#0A2DB5;
+  --blue-light:#EBF0FF;
+  --blue-mid:#3B5BFF;
+  --amber:#F59E0B;
+  --green:#10B981;
+  --border:rgba(0,0,0,0.07);
+  --r:14px;
+  --r-lg:22px;
+  --r-xl:32px;
+  --font:'Plus Jakarta Sans',sans-serif;
+  --mono:'DM Mono',monospace;
+}
+html{font-family:var(--font);color:var(--ink);background:var(--bg);}
+body{overflow-x:hidden;}
+
+/* NAV */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 48px;height:68px;
+  background:rgba(245,246,250,0.85);
+  backdrop-filter:blur(16px);
+  border-bottom:0.5px solid var(--border);
+}
+.nav-logo{font-size:18px;font-weight:800;letter-spacing:-0.02em;color:var(--ink);}
+.nav-links{display:flex;gap:36px;list-style:none;}
+.nav-links a{font-size:14px;font-weight:500;color:var(--ink-2);text-decoration:none;transition:color .2s;}
+.nav-links a:hover{color:var(--blue);}
+.nav-cta{display:flex;gap:12px;align-items:center;}
+.btn-ghost{font-size:14px;font-weight:600;color:var(--blue);background:none;border:none;cursor:pointer;padding:0;}
+.btn-primary{
+  font-size:14px;font-weight:700;color:#fff;
+  background:var(--blue);border:none;
+  padding:10px 22px;border-radius:100px;
+  cursor:pointer;transition:background .2s,transform .15s;
+  font-family:var(--font);
+}
+.btn-primary:hover{background:var(--blue-dark);transform:translateY(-1px);}
+
+/* HERO */
+.hero{
+  padding:160px 48px 80px;
+  max-width:1260px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--blue-light);color:var(--blue);
+  font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  padding:6px 14px;border-radius:100px;margin-bottom:24px;font-family:var(--mono);
+}
+.live-dot{width:7px;height:7px;border-radius:50%;background:var(--blue);position:relative;flex-shrink:0;}
+.live-dot::after{
+  content:'';position:absolute;inset:-4px;border-radius:50%;
+  background:var(--blue);opacity:.3;animation:ping 2s infinite;
+}
+@keyframes ping{0%{transform:scale(1);opacity:.3}100%{transform:scale(2.5);opacity:0}}
+.hero h1{
+  font-size:clamp(40px,4.5vw,66px);font-weight:800;line-height:1.05;
+  letter-spacing:-0.03em;color:var(--ink);margin-bottom:24px;
+}
+.hero h1 em{font-style:normal;color:var(--blue);}
+.hero-sub{font-size:18px;line-height:1.6;color:var(--ink-2);margin-bottom:36px;max-width:520px;}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;}
+.btn-lg{
+  font-size:15px;font-weight:700;padding:14px 30px;border-radius:100px;
+  cursor:pointer;border:none;font-family:var(--font);transition:all .2s;
+}
+.btn-lg.primary{background:var(--blue);color:#fff;}
+.btn-lg.primary:hover{background:var(--blue-dark);transform:translateY(-2px);}
+.btn-lg.secondary{
+  background:var(--surface);color:var(--ink);
+  border:1.5px solid var(--border);
+}
+.btn-lg.secondary:hover{border-color:var(--blue);color:var(--blue);}
+.hero-stats{display:flex;gap:32px;margin-top:48px;padding-top:36px;border-top:1px solid var(--border);}
+.stat-item{display:flex;flex-direction:column;gap:4px;}
+.stat-num{font-size:28px;font-weight:800;letter-spacing:-0.03em;color:var(--ink);}
+.stat-label{font-size:12px;color:var(--ink-3);font-weight:500;}
+
+/* HERO VISUAL */
+.hero-visual{position:relative;}
+.dashboard-card{
+  background:var(--surface);border-radius:var(--r-xl);
+  border:1px solid var(--border);padding:28px;
+  box-shadow:0 24px 80px rgba(0,0,0,.08);
+}
+.db-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;}
+.db-title{font-size:13px;font-weight:700;color:var(--ink);letter-spacing:-.01em;}
+.db-badge{
+  font-family:var(--mono);font-size:10px;font-weight:500;
+  background:#DCFCE7;color:#15803D;padding:4px 10px;border-radius:100px;
+}
+.chart-bars{display:flex;align-items:flex-end;gap:6px;height:100px;margin-bottom:20px;}
+.bar{
+  flex:1;border-radius:6px 6px 0 0;
+  background:var(--blue-light);position:relative;
+  transition:background .3s;
+}
+.bar.active{background:var(--blue);}
+.bar-val{
+  position:absolute;top:-18px;left:50%;transform:translateX(-50%);
+  font-size:9px;font-family:var(--mono);color:var(--ink-3);white-space:nowrap;
+}
+.metrics-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px;}
+.metric-chip{background:var(--bg);border-radius:10px;padding:12px 14px;}
+.metric-chip .label{font-size:10px;color:var(--ink-3);font-weight:500;margin-bottom:4px;font-family:var(--mono);}
+.metric-chip .value{font-size:18px;font-weight:800;color:var(--ink);letter-spacing:-.02em;}
+.metric-chip .delta{font-size:10px;color:var(--green);font-weight:600;margin-left:4px;}
+
+/* FLOATING CARDS */
+.float-card{
+  position:absolute;background:var(--surface);border-radius:var(--r);
+  border:1px solid var(--border);padding:14px 18px;
+  box-shadow:0 8px 30px rgba(0,0,0,.08);
+  display:flex;align-items:center;gap:12px;
+}
+.float-1{bottom:-28px;left:-36px;animation:float1 4s ease-in-out infinite;}
+.float-2{top:-24px;right:-24px;animation:float2 4.5s ease-in-out infinite;}
+@keyframes float1{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes float2{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+.float-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.float-icon.qr{background:#EBF0FF;}
+.float-icon.inv{background:#DCFCE7;}
+.float-body{display:flex;flex-direction:column;gap:2px;}
+.float-body strong{font-size:13px;font-weight:700;color:var(--ink);}
+.float-body span{font-size:11px;color:var(--ink-3);}
+
+/* TRUST STRIP */
+.trust{padding:20px 48px 36px;max-width:1260px;margin:0 auto;}
+.trust-label{font-size:11px;font-weight:600;color:var(--ink-3);letter-spacing:.1em;text-transform:uppercase;font-family:var(--mono);text-align:center;margin-bottom:20px;}
+.trust-logos{display:flex;justify-content:center;align-items:center;gap:40px;flex-wrap:wrap;}
+.trust-logo{
+  font-size:15px;font-weight:800;color:var(--ink-3);
+  opacity:.5;filter:grayscale(1);transition:all .3s;letter-spacing:-.01em;
+}
+.trust-logos:hover .trust-logo{opacity:.3;}
+.trust-logo:hover{opacity:1!important;filter:none;color:var(--ink);}
+
+/* SECTION COMMON */
+.section{padding:100px 48px;max-width:1260px;margin:0 auto;}
+.section-full{padding:100px 48px;background:var(--surface);}
+.section-inner{max-width:1260px;margin:0 auto;}
+.eyebrow{
+  display:inline-block;font-size:11px;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--blue);font-family:var(--mono);margin-bottom:16px;
+}
+.section-title{font-size:clamp(28px,3.5vw,46px);font-weight:800;letter-spacing:-.03em;line-height:1.1;color:var(--ink);}
+.section-sub{font-size:17px;color:var(--ink-2);line-height:1.6;margin-top:14px;max-width:540px;}
+
+/* FEATURES - BENTO */
+.features-grid{
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  gap:16px;margin-top:56px;
+}
+.f-card{
+  background:var(--surface);border-radius:var(--r-lg);
+  border:1px solid var(--border);padding:32px;
+  transition:box-shadow .3s,transform .3s;
+}
+.f-card:hover{box-shadow:0 16px 48px rgba(0,0,0,.07);transform:translateY(-3px);}
+.f-card.span-7{grid-column:span 7;}
+.f-card.span-5{grid-column:span 5;}
+.f-card.span-4{grid-column:span 4;}
+.f-card.span-8{grid-column:span 8;}
+.f-card.span-12{grid-column:span 12;}
+.f-card.blue{background:var(--blue);border-color:var(--blue);}
+.f-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:20px;}
+.f-icon.blue-bg{background:var(--blue-light);}
+.f-icon.green-bg{background:#DCFCE7;}
+.f-icon.amber-bg{background:#FEF3C7;}
+.f-icon.invert{background:rgba(255,255,255,.15);}
+.f-card h3{font-size:20px;font-weight:700;letter-spacing:-.02em;color:var(--ink);margin-bottom:10px;}
+.f-card.blue h3{color:#fff;}
+.f-card p{font-size:15px;color:var(--ink-2);line-height:1.6;}
+.f-card.blue p{color:rgba(255,255,255,.75);}
+.f-tag{
+  display:inline-block;font-family:var(--mono);font-size:10px;font-weight:500;
+  padding:4px 10px;border-radius:100px;margin-bottom:14px;
+}
+.tag-amber{background:#FEF3C7;color:#92400E;}
+.tag-blue{background:rgba(255,255,255,.2);color:#fff;}
+
+/* QR MOCKUP inside card */
+.qr-demo{
+  margin-top:24px;background:var(--bg);border-radius:12px;padding:20px;
+  display:flex;gap:16px;align-items:center;
+}
+.qr-box{
+  width:72px;height:72px;border-radius:10px;background:var(--ink);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  font-size:32px;
+}
+.qr-steps{display:flex;flex-direction:column;gap:6px;}
+.qr-step{
+  display:flex;align-items:center;gap:8px;
+  font-size:12px;color:var(--ink-2);font-weight:500;
+}
+.step-num{
+  width:20px;height:20px;border-radius:50%;background:var(--blue);color:#fff;
+  font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+
+/* INVENTORY VISUAL */
+.inv-list{display:flex;flex-direction:column;gap:8px;margin-top:20px;}
+.inv-row{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:10px 12px;background:var(--bg);border-radius:10px;
+  font-size:13px;
+}
+.inv-name{font-weight:600;color:var(--ink);}
+.inv-bar-wrap{flex:1;margin:0 16px;height:4px;background:rgba(0,0,0,.08);border-radius:2px;overflow:hidden;}
+.inv-bar{height:100%;border-radius:2px;background:var(--green);}
+.inv-bar.low{background:#F59E0B;}
+.inv-bar.critical{background:#EF4444;}
+.inv-stock{font-family:var(--mono);font-size:11px;color:var(--ink-3);}
+
+/* AWARD */
+.award-section{
+  padding:80px 48px;
+  background:linear-gradient(135deg,var(--blue) 0%,#0A25A0 100%);
+}
+.award-inner{
+  max-width:1260px;margin:0 auto;
+  display:flex;align-items:center;gap:60px;
+}
+.award-icon{
+  width:120px;height:120px;border-radius:50%;
+  background:rgba(255,255,255,.1);border:2px solid rgba(255,255,255,.2);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:54px;
+}
+.award-text .eyebrow-white{
+  font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(255,255,255,.6);font-family:var(--mono);display:block;margin-bottom:12px;
+}
+.award-text h2{font-size:36px;font-weight:800;color:#fff;letter-spacing:-.02em;margin-bottom:10px;}
+.award-text p{font-size:16px;color:rgba(255,255,255,.75);line-height:1.6;max-width:560px;}
+
+/* PRICING */
+.pricing-section{padding:100px 48px;background:var(--ink);}
+.pricing-inner{max-width:1260px;margin:0 auto;display:grid;grid-template-columns:1fr 1.1fr;gap:80px;align-items:center;}
+.pricing-left .section-title{color:#fff;}
+.pricing-left .section-sub{color:rgba(255,255,255,.65);}
+.pricing-perks{margin-top:36px;display:flex;flex-direction:column;gap:14px;}
+.perk{display:flex;align-items:center;gap:12px;font-size:15px;color:rgba(255,255,255,.85);font-weight:500;}
+.perk-check{
+  width:22px;height:22px;border-radius:50%;background:var(--green);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px;color:#fff;
+}
+.form-card{
+  background:var(--surface);border-radius:var(--r-xl);padding:40px;
+  position:relative;overflow:hidden;
+}
+.form-card h3{font-size:22px;font-weight:800;color:var(--ink);margin-bottom:6px;letter-spacing:-.02em;}
+.form-card p{font-size:14px;color:var(--ink-3);margin-bottom:28px;}
+.form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:18px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+label{font-size:11px;font-weight:700;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;font-family:var(--mono);}
+input,select{
+  width:100%;padding:12px 16px;
+  background:var(--bg);border:1.5px solid var(--border);
+  border-radius:10px;font-size:15px;color:var(--ink);
+  font-family:var(--font);outline:none;transition:border-color .2s;
+  appearance:none;
+}
+input:focus,select:focus{border-color:var(--blue);}
+input::placeholder{color:var(--ink-3);}
+.btn-form{
+  width:100%;padding:15px;background:var(--blue);color:#fff;
+  border:none;border-radius:100px;font-size:15px;font-weight:700;
+  font-family:var(--font);cursor:pointer;transition:background .2s,transform .15s;
+  margin-top:6px;
+}
+.btn-form:hover{background:var(--blue-dark);transform:translateY(-1px);}
+.success-overlay{
+  display:none;position:absolute;inset:0;background:var(--surface);
+  z-index:10;flex-direction:column;align-items:center;justify-content:center;
+  border-radius:var(--r-xl);text-align:center;padding:2rem;
+}
+.success-check{
+  width:64px;height:64px;border-radius:50%;background:#DCFCE7;
+  display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:28px;
+}
+
+/* BLOG */
+.blog-section{padding:100px 48px;background:var(--bg);}
+.blog-inner{max-width:1260px;margin:0 auto;}
+.blog-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:48px;}
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.blog-card{
+  background:var(--surface);border-radius:var(--r-lg);
+  border:1px solid var(--border);overflow:hidden;
+  transition:box-shadow .3s,transform .3s;cursor:pointer;
+}
+.blog-card:hover{box-shadow:0 16px 48px rgba(0,0,0,.07);transform:translateY(-4px);}
+.blog-thumb{
+  height:190px;background:var(--surface-2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:56px;position:relative;overflow:hidden;
+}
+.blog-thumb-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to bottom,transparent 40%,rgba(0,0,0,.06));
+}
+.blog-pill{
+  position:absolute;top:14px;left:14px;
+  font-family:var(--mono);font-size:10px;font-weight:500;
+  background:rgba(255,255,255,.95);color:var(--blue);
+  padding:5px 12px;border-radius:100px;
+}
+.blog-body{padding:24px;}
+.blog-body h3{font-size:17px;font-weight:700;color:var(--ink);line-height:1.3;margin-bottom:10px;letter-spacing:-.01em;}
+.blog-body p{font-size:14px;color:var(--ink-2);line-height:1.6;}
+.blog-card:hover .blog-body h3{color:var(--blue);}
+
+/* FOOTER */
+footer{
+  background:var(--ink);padding:60px 48px 36px;
+}
+.footer-inner{max-width:1260px;margin:0 auto;}
+.footer-top{
+  display:flex;justify-content:space-between;align-items:center;
+  padding-bottom:32px;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:32px;
+}
+.footer-logo{font-size:20px;font-weight:800;color:#fff;letter-spacing:-.02em;}
+.footer-links{display:flex;gap:28px;flex-wrap:wrap;}
+.footer-links a{
+  font-size:13px;color:rgba(255,255,255,.45);text-decoration:none;
+  font-weight:500;transition:color .2s;
+}
+.footer-links a:hover{color:rgba(255,255,255,.9);}
+.footer-copy{font-size:13px;color:rgba(255,255,255,.3);}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .nav{padding:0 24px;}
+  .nav-links{display:none;}
+  .hero{grid-template-columns:1fr;padding:120px 24px 60px;gap:48px;}
+  .hero-visual{display:none;}
+  .features-grid .f-card.span-7,.features-grid .f-card.span-5,.features-grid .f-card.span-4,.features-grid .f-card.span-8{grid-column:span 12;}
+  .pricing-inner{grid-template-columns:1fr;gap:48px;}
+  .blog-grid{grid-template-columns:1fr;}
+  .section,.blog-section,.blog-inner,.pricing-section,.award-section{padding-left:24px;padding-right:24px;}
+  .award-inner{flex-direction:column;gap:28px;text-align:center;}
+  .footer-top{flex-direction:column;gap:20px;text-align:center;}
+  .trust{padding:20px 24px 36px;}
+}
+
+/* ANIMATIONS */
+@media(prefers-reduced-motion:no-preference){
+  .hero h1{animation:fadeUp .7s ease both;}
+  .hero-sub{animation:fadeUp .7s .12s ease both;}
+  .hero-actions{animation:fadeUp .7s .2s ease both;}
+  .hero-stats{animation:fadeUp .7s .28s ease both;}
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+/* scroll reveal */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease;}
+.reveal.visible{opacity:1;transform:none;}
+</style>
 </head>
-<body class="bg-surface-gray text-on-background font-body-md overflow-x-hidden">
-<!-- TopNavBar -->
-<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-gutter py-4 max-w-container-max mx-auto glass-nav bg-surface/80 border-b border-outline-variant/30 shadow-sm">
-<div class="flex items-center gap-2">
-<span class="font-display-lg text-headline-md font-bold tracking-tight text-on-background">Aryvo Technology</span>
-</div>
-<nav class="hidden md:flex items-center gap-8">
-<a class="font-label-caps text-label-caps text-primary font-semibold border-b-2 border-primary" href="#">Platform</a>
-<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors" href="#features">Solutions</a>
-<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors" href="#pricing">Pricing</a>
-<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors" href="#insights">Resources</a>
-</nav>
-<div class="flex items-center gap-4">
-<button class="hidden md:block font-label-caps text-label-caps text-primary font-semibold">Login</button>
-<button class="btn-glossy bg-primary text-on-primary px-6 py-3 rounded-lg font-label-caps text-label-caps flex items-center gap-2" onclick="document.getElementById('pricing').scrollIntoView({behavior: 'smooth'})">
-            Book Demo <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
-</button>
-</div>
+<body>
+
+<!-- NAV -->
+<header class="nav">
+  <div class="nav-logo">Aryvo Technology</div>
+  <ul class="nav-links">
+    <li><a href="#features">Platform</a></li>
+    <li><a href="#features">Solutions</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#insights">Resources</a></li>
+  </ul>
+  <div class="nav-cta">
+    <button class="btn-ghost">Login</button>
+    <button class="btn-primary" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">Book Demo →</button>
+  </div>
 </header>
-<main>
-<!-- Hero Section -->
-<section class="relative pt-[180px] pb-section-padding-desktop px-gutter flex flex-col items-center text-center overflow-hidden">
-<div class="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-primary-fixed/30 via-background to-background"></div>
-<div class="inline-flex items-center gap-2 bg-surface-container px-4 py-2 rounded-full mb-8 border border-outline-variant/50">
-<span class="pulse-dot"></span>
-<span class="font-label-caps text-label-caps text-primary font-bold">NEW: AI SALES ENGINE LIVE</span>
-</div>
-<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg max-w-[1000px] leading-tight mb-8">
-                Revolutionizing Business Operations with <span class="text-primary">AI-Powered POS</span> &amp; Management
-            </h1>
-<p class="font-body-lg text-body-lg text-on-surface-variant max-w-[700px] mb-12">
-                Scale your restaurant or retail chain with precision. Automated workflows, predictive analytics, and seamless hardware integration designed for high-growth SMBs.
-            </p>
-<div class="flex flex-col sm:flex-row gap-4 mb-20">
-<button class="btn-glossy bg-primary text-on-primary px-8 py-5 rounded-xl font-label-caps text-label-caps text-[14px] uppercase tracking-widest" onclick="document.getElementById('pricing').scrollIntoView({behavior: 'smooth'})">
-                    Book a Free Demo
-                </button>
-<button class="bg-surface-container-lowest border border-outline-variant text-on-surface px-8 py-5 rounded-xl font-label-caps text-label-caps text-[14px] uppercase tracking-widest hover:bg-surface-container transition-colors">
-                    View Solution
-                </button>
-</div>
-<!-- Hero Image / Dashboard Mockup -->
-<div class="relative w-full max-w-[1100px] mx-auto group">
-<div class="absolute -inset-1 bg-gradient-to-r from-primary/20 to-secondary-container/20 rounded-[2rem] blur-2xl group-hover:opacity-100 transition-opacity duration-500 opacity-50"></div>
-<div class="relative bg-surface-container-lowest rounded-[2rem] border border-outline-variant/40 shadow-2xl overflow-hidden aspect-[16/9]">
-<img class="w-full h-full object-cover" data-alt="A high-end, clean user interface of a modern AI-powered POS dashboard displayed on a sleek tablet device. The interface shows vibrant data visualizations, sales charts in primary blue tones, and intuitive inventory management lists. The setting is a brightly lit, contemporary retail environment with soft focus in the background, reinforcing a premium SaaS product aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxIFd3B9pHH8ey55bfqoyV75CFm8F3fcLfnTSJK9MvBvQ_NqqMO6txZIQ4MjNv2EeBFXOiYy0OqPZgIsAnrGsaFYFEBnlbF7rC0Qq6_4IJindBVfstNCmkwENwX8LyoyjZHPgyeBZQrHzO4tGrMoiz_s9tM3yrhgJvWP71zgD5y0ntVtFygvTkKSpybgQRu06LEHelHY5Feo61PhgY0YrPAY1xvpCJk-rNbNFjrISkCi6WdLC2GDY5_bwYpXpCrFPZptD7ncpIn34"/>
-</div>
-</div>
-</section>
-<!-- Trust Section -->
-<section class="py-16 bg-surface-container-low border-y border-outline-variant/30">
-<div class="max-w-container-max mx-auto px-gutter">
-<p class="text-center font-label-caps text-label-caps text-outline mb-10 tracking-[0.2em] uppercase">Trusted by 15+ Leading Businesses</p>
-<div class="flex flex-wrap justify-center items-center gap-x-12 md:gap-x-24 gap-y-8 opacity-70 grayscale hover:grayscale-0 transition-all duration-500">
-<span class="font-display-lg text-headline-md font-extrabold text-on-background">Titishya Fast Food</span>
-<span class="font-display-lg text-headline-md font-extrabold text-on-background">Sip and Bite</span>
-<span class="font-display-lg text-headline-md font-extrabold text-on-background">Military Hotel Prince</span>
-<span class="font-display-lg text-headline-md font-extrabold text-on-background">Pizza King</span>
-</div>
-</div>
-</section>
-<!-- Award Section -->
-<section class="py-section-padding-desktop px-gutter">
-<div class="max-w-[1000px] mx-auto bg-primary text-on-primary rounded-[3rem] p-12 md:p-20 relative overflow-hidden flex flex-col md:flex-row items-center gap-12">
-<div class="absolute top-0 right-0 w-64 h-64 bg-secondary-container/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
-<div class="flex-shrink-0 w-40 h-40 md:w-56 md:h-56 bg-white/10 rounded-full flex items-center justify-center border border-white/20">
-<span class="material-symbols-outlined text-[80px] md:text-[120px] text-conversion-orange" style="font-variation-settings: 'FILL' 1;">emoji_events</span>
-</div>
-<div>
-<span class="font-label-caps text-label-caps bg-white/20 px-4 py-1 rounded-full mb-4 inline-block">ACADEMIC EXCELLENCE</span>
-<h2 class="font-display-lg text-headline-md md:text-display-lg-mobile text-white mb-4">1st Place Award Winner</h2>
-<p class="font-body-lg text-body-lg text-on-primary/80">Proudly recognized at the Innotech MSB Inter-School Competition for pioneering AI solutions in small business technology.</p>
-</div>
-</div>
-</section>
-<!-- Features Bento Grid -->
-<section class="py-section-padding-desktop px-gutter bg-surface-gray" id="features">
-<div class="max-w-container-max mx-auto">
-<div class="mb-20">
-<span class="font-label-caps text-label-caps text-primary font-bold block mb-4 uppercase tracking-widest">Capabilities</span>
-<h2 class="font-display-lg text-headline-md md:text-display-lg-mobile max-w-xl">Built for Growth, Engineered for Precision.</h2>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-12 gap-8">
-<!-- Feature 1: AI Optimization -->
-<div class="md:col-span-8 bg-surface-container-lowest p-10 rounded-[2rem] border border-outline-variant/30 shadow-sm hover:shadow-md transition-all group">
-<div class="w-14 h-14 bg-primary-fixed rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
-<span class="material-symbols-outlined text-primary text-3xl">psychology</span>
-</div>
-<h3 class="font-headline-md text-headline-md mb-4">AI Sales Optimization</h3>
-<p class="font-body-md text-on-surface-variant max-w-lg">Predict customer behavior and peak hours with our proprietary AI engine. Increase average order value by 22% with automated smart upsells integrated directly into your checkout flow.</p>
-<div class="mt-12 h-48 rounded-xl bg-surface-container overflow-hidden">
-<img class="w-full h-full object-cover" data-alt="A sophisticated data visualization dashboard showing complex line graphs and bar charts representing sales growth and customer traffic patterns. The interface uses a professional color scheme of deep blues, teals, and soft greys. The lighting is clean and uniform, typical of a modern software workspace, conveying a sense of high-tech efficiency and deep analytical insight." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnf4cpov8dMw5O2w5jwXGwgKs1gevJCrUF82EG6AW920pUKM23bqx_Vfr4z9FYHTRIKscde6QuzCvIJRnm_YiWGfQ5Y8YmHtJtTqPAxBQHbghMjEA46fPxEPlIl_ZBFLsLbx6vqnKOENKOcbY3OcTD2bFjU0LztTXxvy8jRLl_Fk_QMGfwy3A6x2_pOAh52eBucgrAZ-DXj3fDLrmwquBZzVpKwO7UuTm_9Yke39e6Ml3RD5ku0gqK7eImaYG0gmzZBpvgSYmZxGY"/>
-</div>
-</div>
-<!-- Feature 2: Optimized Ops -->
-<div class="md:col-span-4 bg-primary-container text-on-primary-container p-10 rounded-[2rem] shadow-sm flex flex-col justify-between group">
-<div>
-<div class="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center mb-8">
-<span class="material-symbols-outlined text-white text-3xl">settings_suggest</span>
-</div>
-<h3 class="font-headline-md text-headline-md mb-4">Optimized Operations</h3>
-<p class="font-body-md opacity-80">Streamline inventory, staff scheduling, and supplier management into a single, unified command center.</p>
-</div>
-<div class="mt-8 flex items-center justify-center">
-<span class="material-symbols-outlined text-[100px] opacity-20">hub</span>
-</div>
-</div>
-<!-- Feature 3: Affordable Rates -->
-<div class="md:col-span-4 bg-surface-container-high p-10 rounded-[2rem] border border-outline-variant/30 group">
-<div class="w-14 h-14 bg-success-emerald/10 rounded-2xl flex items-center justify-center mb-8">
-<span class="material-symbols-outlined text-success-emerald text-3xl">payments</span>
-</div>
-<h3 class="font-headline-md text-headline-md mb-4">Affordable Rates</h3>
-<p class="font-body-md text-on-surface-variant">Enterprise-grade technology at SMB-friendly prices. No hidden fees, no complex tiers—just value that scales with you.</p>
-</div>
-<!-- Feature 4: Free Printer Offer -->
-<div class="md:col-span-8 bg-surface-container-lowest border border-outline-variant/30 rounded-[2rem] overflow-hidden flex flex-col md:flex-row items-center">
-<div class="p-10 flex-1">
-<span class="font-label-caps text-label-caps text-conversion-orange font-bold uppercase mb-2 block">Special Offer</span>
-<h3 class="font-headline-md text-headline-md mb-4">Complimentary Hardware</h3>
-<p class="font-body-md text-on-surface-variant">Get a professional thermal printer and tablet stand free when you sign up for our Annual Plan. We handle the shipping and setup.</p>
-</div>
-<div class="w-full md:w-1/3 h-full min-h-[200px]">
-<img class="w-full h-full object-cover" data-alt="A sleek, modern thermal receipt printer sitting next to a professional POS tablet on a minimalist wooden counter. The setting is a high-end boutique or cafe with warm, soft-focus ambient lighting. The style is clean and commercial, highlighting the hardware's premium design and build quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxn1BInFQJoITg8Q6qPVbLXtfYlMDH7_SVDS6NyxMyTOTsTj8U5n1s2pBD6USZEw5QPx1xtMW3vJvtQbCtPP_pf05_F75CFVB_Ara_NtT8Uu9pl1VH4TC7Bu6gl4du3L-7YHLSqmWUk9H92By3h6bCD5txZajXvo32ZV9xEEvozXFFQX8pOEYsNIOhOqVin6-4wwh7s_lzmymQUIPPySwr11sVFG6Jxk92eIdbQotvKV5gQZUJINDyrjndWIbY90k4mSw_WAbjEfU"/>
-</div>
-</div>
-</div>
+
+<!-- HERO -->
+<section style="background:var(--bg);padding-top:0;">
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">
+      <span class="live-dot"></span>
+      AI Sales Engine — Live
+    </div>
+    <h1>Run your business<br/>on <em>autopilot.</em></h1>
+    <p class="hero-sub">QR-based ordering, AI-driven inventory, and real-time analytics — built for restaurants and retail chains that refuse to be slowed down.</p>
+    <div class="hero-actions">
+      <button class="btn-lg primary" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">Get a free demo</button>
+      <button class="btn-lg secondary" onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})">See how it works</button>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <span class="stat-num">15+</span>
+        <span class="stat-label">Businesses live</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">22%</span>
+        <span class="stat-label">Avg. revenue lift</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">🥇</span>
+        <span class="stat-label">Innotech MSB winner</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dashboard mockup -->
+  <div class="hero-visual">
+    <div style="position:relative;padding:16px 0;">
+      <div class="dashboard-card">
+        <div class="db-header">
+          <span class="db-title">Today's Sales Overview</span>
+          <span class="db-badge">● Live</span>
+        </div>
+        <div class="chart-bars">
+          <div class="bar" style="height:45%"><span class="bar-val">Mon</span></div>
+          <div class="bar" style="height:62%"></div>
+          <div class="bar" style="height:55%"></div>
+          <div class="bar active" style="height:88%"></div>
+          <div class="bar" style="height:72%"></div>
+          <div class="bar" style="height:60%"></div>
+          <div class="bar active" style="height:95%"><span class="bar-val">Today</span></div>
+        </div>
+        <div class="metrics-row">
+          <div class="metric-chip">
+            <div class="label">Revenue</div>
+            <div class="value">₹84,200<span class="delta">↑18%</span></div>
+          </div>
+          <div class="metric-chip">
+            <div class="label">Orders</div>
+            <div class="value">312<span class="delta">↑9%</span></div>
+          </div>
+          <div class="metric-chip">
+            <div class="label">Avg. Order</div>
+            <div class="value">₹270</div>
+          </div>
+          <div class="metric-chip">
+            <div class="label">Upsells</div>
+            <div class="value">47<span class="delta">+AI</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Floating cards -->
+      <div class="float-card float-1">
+        <div class="float-icon qr">📲</div>
+        <div class="float-body">
+          <strong>Table 7 ordered</strong>
+          <span>via QR scan · 12s ago</span>
+        </div>
+      </div>
+      <div class="float-card float-2">
+        <div class="float-icon inv">📦</div>
+        <div class="float-body">
+          <strong>Low stock alert</strong>
+          <span>Tomato sauce — 2 units left</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 </section>
-<!-- Pricing / Lead Capture -->
-<section class="py-section-padding-desktop px-gutter relative" id="pricing">
-<div class="absolute inset-0 -z-10 bg-on-background"></div>
-<div class="max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-<div class="text-white">
-<h2 class="font-display-lg text-display-lg-mobile md:text-display-lg mb-8">Tailored Pricing for Your Ambition.</h2>
-<p class="font-body-lg text-white/70 mb-12">We don't believe in one-size-fits-all. Every business has unique needs, which is why we provide custom quotes based on your volume and location. Get yours in under 60 seconds.</p>
-<ul class="space-y-6">
-<li class="flex items-center gap-4">
-<span class="material-symbols-outlined text-success-emerald">check_circle</span>
-<span class="font-body-md text-white/90">24/7 Dedicated Support</span>
-</li>
-<li class="flex items-center gap-4">
-<span class="material-symbols-outlined text-success-emerald">check_circle</span>
-<span class="font-body-md text-white/90">Zero Setup Fees</span>
-</li>
-<li class="flex items-center gap-4">
-<span class="material-symbols-outlined text-success-emerald">check_circle</span>
-<span class="font-body-md text-white/90">Unlimited User Accounts</span>
-</li>
-</ul>
+
+<!-- TRUST -->
+<div class="trust">
+  <p class="trust-label">Trusted by growing businesses</p>
+  <div class="trust-logos">
+    <span class="trust-logo">Titishya Fast Food</span>
+    <span class="trust-logo">Sip and Bite</span>
+    <span class="trust-logo">Military Hotel Prince</span>
+    <span class="trust-logo">Pizza King</span>
+  </div>
 </div>
-<div class="relative bg-surface-container-lowest p-8 md:p-12 rounded-[2.5rem] shadow-2xl" id="lead-form-container">
-<div class="form-success-overlay" id="success-overlay">
-<div class="w-20 h-20 bg-success-emerald/10 rounded-full flex items-center justify-center mb-6">
-<span class="material-symbols-outlined text-success-emerald text-5xl">check_circle</span>
-</div>
-<h3 class="font-headline-md text-headline-md mb-2">Request Received!</h3>
-<p class="font-body-md text-on-surface-variant">Our team will reach out within 24 hours with your custom quote.</p>
-<button class="mt-8 text-primary font-label-caps text-label-caps border-b border-primary" onclick="resetForm()">Send another request</button>
-</div>
-<div class="mb-8">
-<h3 class="font-headline-md text-headline-md text-on-background mb-2">Know Our Pricing</h3>
-<p class="font-body-md text-on-surface-variant">Fill out the form to receive a custom quote.</p>
-</div>
-<form class="space-y-6" id="aryvo-lead-form">
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-<div class="space-y-2">
-<label class="font-label-caps text-label-caps text-outline uppercase">Full Name</label>
-<input class="w-full bg-surface-gray border-outline-variant rounded-xl p-4 focus:ring-primary focus:border-primary" id="form-name" placeholder="John Doe" required="" type="text"/>
-</div>
-<div class="space-y-2">
-<label class="font-label-caps text-label-caps text-outline uppercase">Contact Number</label>
-<input class="w-full bg-surface-gray border-outline-variant rounded-xl p-4 focus:ring-primary focus:border-primary" id="form-contact" placeholder="+1 (555) 000-0000" required="" type="tel"/>
-</div>
-</div>
-<div class="space-y-2">
-<label class="font-label-caps text-label-caps text-outline uppercase">Business Name</label>
-<input class="w-full bg-surface-gray border-outline-variant rounded-xl p-4 focus:ring-primary focus:border-primary" id="form-business" placeholder="Your Restaurant or Shop Name" required="" type="text"/>
-</div>
-<div class="space-y-2">
-<label class="font-label-caps text-label-caps text-outline uppercase">Plan Duration</label>
-<select class="w-full bg-surface-gray border-outline-variant rounded-xl p-4 focus:ring-primary focus:border-primary appearance-none" id="form-plan">
-<option value="6 Months">6 Months</option>
-<option selected="" value="1 Year">1 Year (Most Popular)</option>
-<option value="2 Year">2 Year</option>
-<option value="3 Year">3 Year (Best Value)</option>
-</select>
-</div>
-<button class="w-full btn-glossy bg-primary text-on-primary py-5 rounded-xl font-label-caps text-label-caps text-[14px] uppercase tracking-widest mt-4" type="submit">
-                            Get Custom Quote
-                        </button>
-</form>
-</div>
-</div>
-</section>
-<!-- Insights Section -->
-<section class="py-section-padding-desktop px-gutter bg-surface-gray" id="insights">
-<div class="max-w-container-max mx-auto">
-<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
-<div>
-<span class="font-label-caps text-label-caps text-primary font-bold block mb-4 uppercase tracking-widest">Industry Insights</span>
-<h2 class="font-display-lg text-headline-md md:text-display-lg-mobile">The Future of Commerce.</h2>
-</div>
-<button class="font-label-caps text-label-caps text-primary border-b-2 border-primary hover:opacity-70 transition-opacity">View All Articles</button>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-<!-- Blog 1 -->
-<article class="group cursor-pointer">
-<div class="aspect-[4/3] rounded-3xl overflow-hidden mb-6 relative">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A futuristic retail environment where digital interfaces and physical space blend seamlessly. The image depicts a modern storefront with interactive glass displays and subtle glowing data points overlaying the physical products. The color palette is composed of cool whites and corporate blues, maintaining a high-end, technologically advanced aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDH7y4NOkFCG4B5y2F7OM6fXlD8qspANJqYqzHkCytsahg9vXZd4-IAFKlvzo9G3mGntsyT4DyHhSW9V3BdaJhepOGTHaz6YMj0Pq2mBy4EhyxCtZixTs3kuwJc2wSsmwdaZ-ldIUA2dTy2abX9crBXuaiB8__d6ilPtPRitRakmBj-17cueF8onU1wn2SzkDI1rI4oRUMmZF7kQa-YwaO0ZEuw_Kgap9QABu5dRcIFRePd97E5pY8AXkqGFYks5EijGcoiF1qejBM"/>
-<div class="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full">
-<span class="font-label-caps text-[10px] text-primary font-bold uppercase">AI Strategy</span>
-</div>
-</div>
-<h3 class="font-headline-md text-headline-md mb-3 group-hover:text-primary transition-colors">How AI Optimizes Sales for Small Retailers</h3>
-<p class="font-body-md text-on-surface-variant line-clamp-3">Discover the data-driven tactics that major chains use, now accessible for independent businesses through Aryvo's AI engine.</p>
-</article>
-<!-- Blog 2 -->
-<article class="group cursor-pointer">
-<div class="aspect-[4/3] rounded-3xl overflow-hidden mb-6 relative">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A focused group of diverse professionals in a high-tech meeting room, collaborating on a large digital screen showing complex logistical maps and efficiency data. The lighting is crisp and modern, with a palette of deep blues and bright whites. The mood is one of focused innovation and strategic planning." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVCFoA4BBwdR8vKXLh-7AukSSkBH1P1xPDfm3YS0Bw19vcLWHAmPM3divtBB-ETgeqZhPuHk3YGnt4rkTXe0iF-cfET0hIsVd6BWhAHBSUcM-tU0G-ClOd2eJANF0ufiL7Xj0RuVd1CM4S6QszElijmpSAfYgLYX9eGe6_eXCL6C4AvQRp-s1pnIufVBpCKli3fNKOwlQ_pXRQQJH9Iv-kVwThpYJE6cvrsXMmi8uDcurQfeXd5I0XPHeuhb6mNOlbVryzIxK_Nrw"/>
-<div class="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full">
-<span class="font-label-caps text-[10px] text-primary font-bold uppercase">Operations</span>
-</div>
-</div>
-<h3 class="font-headline-md text-headline-md mb-3 group-hover:text-primary transition-colors">Streamlining Restaurant Ops: Beyond the POS</h3>
-<p class="font-body-md text-on-surface-variant line-clamp-3">Why your hardware is only 10% of the battle. Learn how predictive inventory can save you 15% on waste monthly.</p>
-</article>
-<!-- Blog 3 -->
-<article class="group cursor-pointer">
-<div class="aspect-[4/3] rounded-3xl overflow-hidden mb-6 relative">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A glowing digital network visualization representing global connectivity and data flow. The aesthetic is clean, minimalist, and highly corporate, with primary blue light patterns on a dark, sophisticated background. The image conveys a sense of speed, precision, and the power of real-time cloud technology." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdDExWXiiXkMGra4vWDupcevw16dPi4Ng6hpBUUCDJygwdM_hNbIrjgI4cHm45N_5u_C0UPQO55Y2gIA-NU5WD0rmun_XcOFHFga1vxjS34gmrNOoS_EIRYhNZfpiibBgvJoIzbunApre37-vfBW_CGX0PQPRoy0ToiZpIaYhd2X4TecjiCKC0McvAXTFopD0VCVKS3n5xhJnQSbUNsnEBeuOhgLlheMEmJebiIAu3WBc82Yh7lDaZsc6GMWmmCK7Yp8a60F-QHEs"/>
-<div class="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full">
-<span class="font-label-caps text-[10px] text-primary font-bold uppercase">Cloud Tech</span>
-</div>
-</div>
-<h3 class="font-headline-md text-headline-md mb-3 group-hover:text-primary transition-colors">The Real-Time Advantage in 2024</h3>
-<p class="font-body-md text-on-surface-variant line-clamp-3">In a fast-moving market, delayed data is dead data. How Aryvo ensures you're always acting on live insights.</p>
-</article>
-</div>
+
+<!-- FEATURES -->
+<section class="section-full" id="features">
+<div class="section-inner">
+  <div class="reveal">
+    <span class="eyebrow">Platform capabilities</span>
+    <h2 class="section-title">Everything you need,<br/>nothing you don't.</h2>
+    <p class="section-sub">From the moment a customer scans a QR code to when you close the books — Aryvo handles it.</p>
+  </div>
+
+  <div class="features-grid">
+
+    <!-- QR ORDERING — big left -->
+    <div class="f-card span-7 reveal">
+      <div class="f-icon blue-bg">📲</div>
+      <h3>QR-based ordering</h3>
+      <p>Customers scan, browse, and order directly from their phone — no app, no waiting, no friction. Orders fire straight to your kitchen display in real time.</p>
+      <div class="qr-demo">
+        <div class="qr-box">⬛</div>
+        <div class="qr-steps">
+          <div class="qr-step"><div class="step-num">1</div>Customer scans QR at table</div>
+          <div class="qr-step"><div class="step-num">2</div>Browses live menu, places order</div>
+          <div class="qr-step"><div class="step-num">3</div>Kitchen display receives instantly</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AI UPSELL — right -->
+    <div class="f-card span-5 blue reveal">
+      <div class="f-icon invert">🤖</div>
+      <span class="f-tag tag-blue">AI engine</span>
+      <h3>Smart upsells, automatically</h3>
+      <p>Our AI engine reads order patterns and suggests the right add-ons at checkout. Merchants see an average 22% lift in order value — no effort required.</p>
+    </div>
+
+    <!-- INVENTORY — left half -->
+    <div class="f-card span-5 reveal">
+      <div class="f-icon green-bg">📦</div>
+      <h3>Inventory management</h3>
+      <p>Real-time stock tracking with auto-alerts before you run out. Save up to 15% on waste each month with predictive reordering.</p>
+      <div class="inv-list">
+        <div class="inv-row">
+          <span class="inv-name">Chicken Wings</span>
+          <div class="inv-bar-wrap"><div class="inv-bar" style="width:78%"></div></div>
+          <span class="inv-stock">78 units</span>
+        </div>
+        <div class="inv-row">
+          <span class="inv-name">Tomato Sauce</span>
+          <div class="inv-bar-wrap"><div class="inv-bar low" style="width:18%"></div></div>
+          <span class="inv-stock" style="color:#F59E0B;">2 left ⚠</span>
+        </div>
+        <div class="inv-row">
+          <span class="inv-name">Burger Buns</span>
+          <div class="inv-bar-wrap"><div class="inv-bar" style="width:55%"></div></div>
+          <span class="inv-stock">55 units</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- HARDWARE OFFER -->
+    <div class="f-card span-7 reveal" style="display:flex;gap:28px;align-items:center;padding:32px;">
+      <div style="flex:1;">
+        <span class="f-tag tag-amber">Special offer</span>
+        <h3>Free hardware on annual plans</h3>
+        <p>Sign up for our Annual Plan and receive a professional thermal printer + tablet stand — shipped and set up at no extra cost.</p>
+      </div>
+      <div style="font-size:72px;flex-shrink:0;">🖨️</div>
+    </div>
+
+    <!-- AFFORDABLE + SUPPORT — two small cards -->
+    <div class="f-card span-4 reveal" style="background:var(--blue-light);border-color:var(--blue-light);">
+      <div class="f-icon blue-bg">💳</div>
+      <h3>Affordable, always</h3>
+      <p>Enterprise-grade technology priced for growing SMBs. No hidden fees, no complex tiers.</p>
+    </div>
+
+    <div class="f-card span-4 reveal">
+      <div class="f-icon green-bg">🎧</div>
+      <h3>24 / 7 support</h3>
+      <p>A real team, always available. From onboarding to ongoing operations — we don't vanish after sign-up.</p>
+    </div>
+
+    <div class="f-card span-4 reveal">
+      <div class="f-icon amber-bg">⚡</div>
+      <h3>Instant cloud sync</h3>
+      <p>All data updates in real time across every device, every outlet — no manual imports, ever.</p>
+    </div>
+
+  </div>
 </div>
 </section>
-</main>
-<!-- Footer -->
-<footer class="w-full py-section-padding-desktop px-gutter flex flex-col items-center justify-center text-center mt-auto bg-on-background">
-<div class="max-w-container-max w-full">
-<div class="flex flex-col md:flex-row justify-between items-center mb-16 gap-8">
-<span class="font-display-lg text-headline-md text-surface-bright font-bold tracking-tight">Aryvo Technology</span>
-<div class="flex flex-wrap justify-center gap-8">
-<a class="font-label-caps text-label-caps text-surface-dim hover:text-surface-bright transition-colors" href="#">Privacy Policy</a>
-<a class="font-label-caps text-label-caps text-surface-dim hover:text-surface-bright transition-colors" href="#">Terms of Service</a>
-<a class="font-label-caps text-label-caps text-surface-dim hover:text-surface-bright transition-colors" href="#">Cookie Policy</a>
-<a class="font-label-caps text-label-caps text-surface-dim hover:text-surface-bright transition-colors" href="#">Sitemap</a>
+
+<!-- AWARD -->
+<div class="award-section reveal">
+  <div class="award-inner">
+    <div class="award-icon">🏆</div>
+    <div class="award-text">
+      <span class="eyebrow-white">Academic excellence</span>
+      <h2>1st Place — Innotech MSB Inter-School Competition</h2>
+      <p>Recognized for pioneering AI solutions in small business technology. A testament to the team behind Aryvo, and a sign of the ambition ahead.</p>
+    </div>
+  </div>
 </div>
+
+<!-- PRICING / LEAD CAPTURE -->
+<section class="pricing-section" id="pricing">
+  <div class="pricing-inner">
+    <div class="pricing-left reveal">
+      <span class="eyebrow" style="color:rgba(255,255,255,.5);">Custom pricing</span>
+      <h2 class="section-title" style="color:#fff;">Priced for your ambition, not a spreadsheet.</h2>
+      <p class="section-sub" style="color:rgba(255,255,255,.6);">Every business is different. Tell us what you're running — we'll send a custom quote in under 24 hours.</p>
+      <div class="pricing-perks">
+        <div class="perk"><div class="perk-check">✓</div> 24/7 dedicated support</div>
+        <div class="perk"><div class="perk-check">✓</div> Zero setup fees</div>
+        <div class="perk"><div class="perk-check">✓</div> Unlimited user accounts</div>
+        <div class="perk"><div class="perk-check">✓</div> Free hardware on annual plans</div>
+      </div>
+    </div>
+
+    <div class="form-card reveal">
+      <div class="success-overlay" id="success-overlay">
+        <div class="success-check">✅</div>
+        <h3 style="font-size:20px;font-weight:800;color:var(--ink);margin-bottom:8px;">Request received!</h3>
+        <p style="font-size:14px;color:var(--ink-3);line-height:1.6;">Our team will reach out within 24 hours with your custom quote.</p>
+        <button onclick="resetForm()" style="margin-top:20px;font-size:13px;color:var(--blue);background:none;border:none;cursor:pointer;font-weight:600;font-family:var(--font);">Send another →</button>
+      </div>
+      <h3>Know our pricing</h3>
+      <p>Fill out the form to receive a custom quote.</p>
+      <form id="aryvo-lead-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" id="form-name" placeholder="Your name" required/>
+          </div>
+          <div class="form-group">
+            <label>Contact Number</label>
+            <input type="tel" id="form-contact" placeholder="+91 00000 00000" required/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Business Name</label>
+          <input type="text" id="form-business" placeholder="Your restaurant or shop name" required/>
+        </div>
+        <div class="form-group">
+          <label>Plan Duration</label>
+          <select id="form-plan">
+            <option value="6 Months">6 Months</option>
+            <option value="1 Year" selected>1 Year (Most popular)</option>
+            <option value="2 Year">2 Years</option>
+            <option value="3 Year">3 Years (Best value)</option>
+          </select>
+        </div>
+        <button type="submit" class="btn-form">Get custom quote →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<div class="blog-section" id="insights">
+  <div class="blog-inner">
+    <div class="blog-header reveal">
+      <div>
+        <span class="eyebrow">Industry insights</span>
+        <h2 class="section-title">The future of commerce.</h2>
+      </div>
+      <button class="btn-ghost">View all articles →</button>
+    </div>
+    <div class="blog-grid">
+      <div class="blog-card reveal">
+        <div class="blog-thumb" style="background:#EBF0FF;">
+          🛍️
+          <div class="blog-thumb-overlay"></div>
+          <span class="blog-pill">AI Strategy</span>
+        </div>
+        <div class="blog-body">
+          <h3>How AI optimizes sales for small retailers</h3>
+          <p>Data-driven tactics that major chains use, now accessible for independent businesses through Aryvo's AI engine.</p>
+        </div>
+      </div>
+      <div class="blog-card reveal">
+        <div class="blog-thumb" style="background:#DCFCE7;">
+          📊
+          <div class="blog-thumb-overlay"></div>
+          <span class="blog-pill">Operations</span>
+        </div>
+        <div class="blog-body">
+          <h3>Streamlining restaurant ops: beyond the POS</h3>
+          <p>Why your hardware is only 10% of the battle. Predictive inventory can save you 15% on waste every month.</p>
+        </div>
+      </div>
+      <div class="blog-card reveal">
+        <div class="blog-thumb" style="background:#FEF3C7;">
+          ☁️
+          <div class="blog-thumb-overlay"></div>
+          <span class="blog-pill">Cloud Tech</span>
+        </div>
+        <div class="blog-body">
+          <h3>The real-time advantage in 2025</h3>
+          <p>In a fast-moving market, delayed data is dead data. How Aryvo ensures you're always acting on live insights.</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-<div class="h-[1px] w-full bg-white/10 mb-12"></div>
-<p class="font-body-md text-surface-dim opacity-60">
-                © 2024 Aryvo Technology. Precision in Operations. Empowering businesses with the future of commerce technology.
-            </p>
-</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-logo">Aryvo Technology</div>
+      <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Cookie Policy</a>
+        <a href="#">Sitemap</a>
+      </div>
+    </div>
+    <p class="footer-copy">© 2025 Aryvo Technology. Precision in operations — empowering businesses with the future of commerce.</p>
+  </div>
 </footer>
+
 <script>
-        // Form Logic
-        const leadForm = document.getElementById('aryvo-lead-form');
-        const successOverlay = document.getElementById('success-overlay');
+// Form
+const form = document.getElementById('aryvo-lead-form');
+const overlay = document.getElementById('success-overlay');
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  const lead = {
+    name: document.getElementById('form-name').value,
+    contact: document.getElementById('form-contact').value,
+    business: document.getElementById('form-business').value,
+    plan: document.getElementById('form-plan').value,
+    timestamp: new Date().toISOString()
+  };
+  const leads = JSON.parse(localStorage.getItem('aryvo_leads') || '[]');
+  leads.push(lead);
+  localStorage.setItem('aryvo_leads', JSON.stringify(leads));
+  overlay.style.display = 'flex';
+  form.reset();
+});
 
-        if (leadForm) {
-            leadForm.addEventListener('submit', function(e) {
-                e.preventDefault();
+function resetForm() {
+  overlay.style.display = 'none';
+}
 
-                const formData = {
-                    name: document.getElementById('form-name').value,
-                    contact: document.getElementById('form-contact').value,
-                    business: document.getElementById('form-business').value,
-                    plan: document.getElementById('form-plan').value,
-                    timestamp: new Date().toISOString()
-                };
+// Scroll reveal
+const revealEls = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+  });
+}, { threshold: 0.08 });
+revealEls.forEach(el => io.observe(el));
 
-                // Get existing leads or empty array
-                const existingLeads = JSON.parse(localStorage.getItem('aryvo_leads') || '[]');
-                
-                // Add new lead
-                existingLeads.push(formData);
-                
-                // Save back to localStorage
-                localStorage.setItem('aryvo_leads', JSON.stringify(existingLeads));
-
-                // Show success visual feedback
-                successOverlay.style.display = 'flex';
-                leadForm.reset();
-            });
-        }
-
-        function resetForm() {
-            successOverlay.style.display = 'none';
-        }
-
-        // Smooth scroll implementation
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                const target = document.querySelector(targetId);
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // Simple Fade-in effect on scroll
-        const observerOptions = {
-            threshold: 0.1
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('opacity-100', 'translate-y-0');
-                    entry.target.classList.remove('opacity-0', 'translate-y-10');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('section').forEach(section => {
-            section.classList.add('transition-all', 'duration-1000', 'opacity-0', 'translate-y-10');
-            observer.observe(section);
-        });
-    </script>
-</body></html>
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) t.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+</script>
+</body>
+</html>
